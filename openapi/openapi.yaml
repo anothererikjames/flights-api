@@ -1,0 +1,58 @@
+openapi: '3.0.3'
+info:
+  title: Flights API
+  version: 3.1.0
+  description: Flight booking and availability service
+  contact:
+    name: Travel Team
+    email: flights@acme.com
+paths:
+  /flights:
+    get:
+      summary: Search flights
+      operationId: searchFlights
+      tags: [Flights]
+      responses:
+        '200':
+          description: Flight results
+  /flights/{id}:
+    get:
+      summary: Get flight details
+      operationId: getFlightDetails
+      tags: [Flights]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Flight details
+  /bookings:
+    post:
+      summary: Create booking
+      operationId: createBooking
+      tags: [Bookings]
+      responses:
+        '201':
+          description: Booking confirmed
+    get:
+      summary: List bookings
+      operationId: listBookings
+      tags: [Bookings]
+      responses:
+        '200':
+          description: Bookings list
+  /airports:
+    get:
+      summary: List airports
+      operationId: listAirports
+      tags: [Airports]
+      responses:
+        '200':
+          description: Airport list
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
